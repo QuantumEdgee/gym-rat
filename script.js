@@ -993,3 +993,4 @@ function calculateMacros() { app.calculateMacros(); }
 function calculateCalorieGoal() { app.calculateCalorieGoal(); }
 function calculateBodyFat() { app.calculateBodyFat(); }
 function searchFood() { app.searchFood(); }
+function addProgress() { app.addProgress(); }
