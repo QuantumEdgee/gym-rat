@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Rat - Kalkulator Gizi & Kalori Harian By Iqbal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 border-b border-purple-500/30">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-dumbbell text-purple-400 text-2xl"></i>
+                    <h1 class="text-2xl font-bold text-white">Gym Rat By Iqbal</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-purple-300 hover:text-purple-400 transition">Beranda</a>
+                    <a href="#calculators" class="nav-link text-purple-300 hover:text-purple-400 transition">Kalkulator</a>
+                    <a href="#meal-planner" class="nav-link text-purple-300 hover:text-purple-400 transition">Meal Planner</a>
+                    <a href="#progress" class="nav-link text-purple-300 hover:text-purple-400 transition">Progress</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-purple-400">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="#home" class="block text-purple-300 hover:text-purple-400 transition">Beranda</a>
+                <a href="#calculators" class="block text-purple-300 hover:text-purple-400 transition">Kalkulator</a>
+                <a href="#meal-planner" class="block text-purple-300 hover:text-purple-400 transition">Meal Planner</a>
+                <a href="#progress" class="block text-purple-300 hover:text-purple-400 transition">Progress</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="container mx-auto px-4 py-16 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
+                Hitung Gizi & Kalori Harian Anda
+            </h2>
+            <p class="text-xl text-purple-200 mb-8 animate-fade-in-delay">
+                Alat lengkap untuk mencapai tujuan fitness Anda dengan perhitungan yang akurat
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-in-delay-2">
+                <a href="#calculators" class="btn-primary px-8 py-4 rounded-lg font-semibold text-lg">
+                    Mulai Sekarang
+                </a>
+                <a href="#meal-planner" class="btn-secondary px-8 py-4 rounded-lg font-semibold text-lg">
+                    Meal Planner
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculators Section -->
+    <section id="calculators" class="container mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-white text-center mb-12">Kalkulator</h2>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- BMI Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-weight text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">BMI Calculator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">Berat Badan (kg)</label>
+                            <input type="number" id="bmi-weight" class="input" placeholder="70" step="0.1">
+                        </div>
+                        <div>
+                            <label class="label">Tinggi Badan (cm)</label>
+                            <input type="number" id="bmi-height" class="input" placeholder="175" step="0.1">
+                        </div>
+                        <button onclick="calculateBMI()" class="btn-primary w-full">Hitung BMI</button>
+                        <div id="bmi-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BMR Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-fire text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">BMR Calculator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">Jenis Kelamin</label>
+                            <select id="bmr-gender" class="input">
+                                <option value="male">Laki-laki</option>
+                                <option value="female">Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="label">Usia</label>
+                            <input type="number" id="bmr-age" class="input" placeholder="25" min="1">
+                        </div>
+                        <div>
+                            <label class="label">Berat Badan (kg)</label>
+                            <input type="number" id="bmr-weight" class="input" placeholder="70" step="0.1">
+                        </div>
+                        <div>
+                            <label class="label">Tinggi Badan (cm)</label>
+                            <input type="number" id="bmr-height" class="input" placeholder="175" step="0.1">
+                        </div>
+                        <button onclick="calculateBMR()" class="btn-primary w-full">Hitung BMR</button>
+                        <div id="bmr-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TDEE Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-running text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">TDEE Calculator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">BMR (dari kalkulator BMR)</label>
+                            <input type="number" id="tdee-bmr" class="input" placeholder="1700" step="0.1">
+                        </div>
+                        <div>
+                            <label class="label">Aktivitas Harian</label>
+                            <select id="tdee-activity" class="input">
+                                <option value="1.2">Sedentary (Tidak aktif)</option>
+                                <option value="1.375">Light (Olahraga ringan 1-3x/minggu)</option>
+                                <option value="1.55">Moderate (Olahraga sedang 3-5x/minggu)</option>
+                                <option value="1.725">Active (Olahraga berat 6-7x/minggu)</option>
+                                <option value="1.9">Very Active (Olahraga sangat berat, pekerjaan fisik)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateTDEE()" class="btn-primary w-full">Hitung TDEE</button>
+                        <div id="tdee-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Macro Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Macro Calculator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">Total Kalori Harian</label>
+                            <input type="number" id="macro-calories" class="input" placeholder="2000" step="10">
+                        </div>
+                        <div>
+                            <label class="label">Tujuan</label>
+                            <select id="macro-goal" class="input">
+                                <option value="cutting">Cutting (Penurunan berat)</option>
+                                <option value="maintenance">Maintenance (Pemeliharaan)</option>
+                                <option value="bulking">Bulking (Peningkatan massa)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateMacros()" class="btn-primary w-full">Hitung Makro</button>
+                        <div id="macro-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calorie Goal Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-bullseye text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Calorie Goal</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">TDEE (dari kalkulator TDEE)</label>
+                            <input type="number" id="goal-tdee" class="input" placeholder="2500" step="10">
+                        </div>
+                        <div>
+                            <label class="label">Tujuan</label>
+                            <select id="goal-type" class="input">
+                                <option value="lose">Turun Berat Badan (-500 kalori)</option>
+                                <option value="maintain">Pertahankan Berat Badan</option>
+                                <option value="gain">Naik Berat Badan (+500 kalori)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateCalorieGoal()" class="btn-primary w-full">Hitung Target Kalori</button>
+                        <div id="goal-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Body Fat Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-percentage text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Body Fat Estimator</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">Jenis Kelamin</label>
+                            <select id="bf-gender" class="input">
+                                <option value="male">Laki-laki</option>
+                                <option value="female">Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="label">Usia</label>
+                            <input type="number" id="bf-age" class="input" placeholder="25" min="1">
+                        </div>
+                        <div>
+                            <label class="label">BMI (dari kalkulator BMI)</label>
+                            <input type="number" id="bf-bmi" class="input" placeholder="22.5" step="0.1">
+                        </div>
+                        <button onclick="calculateBodyFat()" class="btn-primary w-full">Estimasi Body Fat</button>
+                        <div id="bf-result" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Planner Section -->
+    <section id="meal-planner" class="container mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-white text-center mb-12">Meal Planner</h2>
+        
+        <div class="max-w-6xl mx-auto">
+            <!-- Daily Calorie Tracker -->
+            <div class="card mb-8">
+                <div class="card-header">
+                    <i class="fas fa-utensils text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Daily Calorie Tracker</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid md:grid-cols-4 gap-4 mb-6">
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Target Kalori</div>
+                            <div id="target-calories" class="text-2xl font-bold text-white">2000</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Kalori Terkonsumsi</div>
+                            <div id="consumed-calories" class="text-2xl font-bold text-green-400">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Sisa Kalori</div>
+                            <div id="remaining-calories" class="text-2xl font-bold text-yellow-400">2000</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Progress</div>
+                            <div id="calorie-progress" class="text-2xl font-bold text-purple-400">0%</div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="w-full bg-gray-700 rounded-full h-4">
+                            <div id="calorie-bar" class="bg-gradient-to-r from-purple-500 to-pink-500 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Protein</div>
+                            <div id="total-protein" class="text-xl font-bold text-white">0g</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Karbohidrat</div>
+                            <div id="total-carbs" class="text-xl font-bold text-white">0g</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="text-purple-300 text-sm mb-1">Lemak</div>
+                            <div id="total-fats" class="text-xl font-bold text-white">0g</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Search -->
+            <div class="card mb-8">
+                <div class="card-header">
+                    <i class="fas fa-search text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Cari Makanan</h3>
+                </div>
+                <div class="card-body">
+                    <div class="flex gap-4 mb-4">
+                        <input type="text" id="food-search" class="input flex-1" placeholder="Cari makanan (contoh: nasi, ayam, telur)">
+                        <button onclick="searchFood()" class="btn-primary px-6">Cari</button>
+                    </div>
+                    <div id="food-results" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <!-- Meal Log -->
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard-list text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Catatan Makanan Hari Ini</h3>
+                </div>
+                <div class="card-body">
+                    <div class="space-y-4">
+                        <div class="meal-section">
+                            <h4 class="text-xl font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-sun text-yellow-400 mr-2"></i> Sarapan
+                            </h4>
+                            <div id="breakfast-meals" class="meal-list"></div>
+                        </div>
+                        <div class="meal-section">
+                            <h4 class="text-xl font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-cloud-sun text-orange-400 mr-2"></i> Makan Siang
+                            </h4>
+                            <div id="lunch-meals" class="meal-list"></div>
+                        </div>
+                        <div class="meal-section">
+                            <h4 class="text-xl font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-moon text-blue-400 mr-2"></i> Makan Malam
+                            </h4>
+                            <div id="dinner-meals" class="meal-list"></div>
+                        </div>
+                        <div class="meal-section">
+                            <h4 class="text-xl font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-cookie text-purple-400 mr-2"></i> Snack
+                            </h4>
+                            <div id="snack-meals" class="meal-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Tracker Section -->
+    <section id="progress" class="container mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-white text-center mb-12">Progress Tracker</h2>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="card mb-8">
+                <div class="card-header">
+                    <i class="fas fa-chart-line text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Catat Progress</h3>
+                </div>
+                <div class="card-body">
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label class="label">Tanggal</label>
+                            <input type="date" id="progress-date" class="input">
+                        </div>
+                        <div>
+                            <label class="label">Berat Badan (kg)</label>
+                            <input type="number" id="progress-weight" class="input" placeholder="70" step="0.1">
+                        </div>
+                        <div>
+                            <label class="label">Body Fat (%)</label>
+                            <input type="number" id="progress-bodyfat" class="input" placeholder="15" step="0.1">
+                        </div>
+                    </div>
+                    <button onclick="addProgress()" class="btn-primary w-full">Tambah Progress</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-history text-purple-400 text-3xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Riwayat Progress</h3>
+                </div>
+                <div class="card-body">
+                    <div id="progress-history" class="space-y-3">
+                        <p class="text-purple-300 text-center">Belum ada data progress. Mulai catat progress Anda!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800/80 backdrop-blur-md border-t border-purple-500/30 mt-16">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <p class="text-purple-300">© 2024 Gym Rat - Kalkulator Gizi & Kalori Harian</p>
+            <p class="text-purple-400 text-sm mt-2">Dibuat dengan Power untuk para gym enthusiast</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
